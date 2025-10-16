@@ -97,6 +97,7 @@ def get_guilds():
     if bot_instance is None:
         return jsonify({"error": "Bot is not running"}), 503
     
+    print(f"Bot is in {len(bot_instance.guilds)} guilds.")
     guilds = []
     for guild in bot_instance.guilds:
         guilds.append({
@@ -105,6 +106,7 @@ def get_guilds():
             "member_count": guild.member_count
         })
     
+    print(f"Returning {len(guilds)} guilds: {guilds}")
     return jsonify({"guilds": guilds}), 200
 
 
