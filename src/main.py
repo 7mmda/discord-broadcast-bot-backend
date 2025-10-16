@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, send_from_directory
+from flask_cors import CORS
 from src.models.user import db
 from src.routes.user import user_bp
 from src.routes.broadcast import broadcast_bp, set_bot_instance
@@ -13,6 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
 from bot_runner import start_bot_thread, get_bot_instance
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
+CORS(app)
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
 
 app.register_blueprint(user_bp, url_prefix='/api')
